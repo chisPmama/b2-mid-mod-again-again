@@ -2,6 +2,8 @@
 <% @departments.each do |d| %>
 <h3><%= d.name %></h3>
 <p><b>Floor: </b><%= d.floor %></p>
-<p><b>Employees: </b><%= d.employee_names%>
+<p><b>Employees: </b><% d.employees.each do |e|%>
+                      <%= link_to "#{e.name}", "/employees/#{e.id}" %> *
+                      <% end%>
 <br>
 <% end%>
