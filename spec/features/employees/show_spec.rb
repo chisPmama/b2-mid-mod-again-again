@@ -5,7 +5,7 @@ RSpec.describe "Employee Show Page" do
     test_data
   end
 
-  describe '#initialize' do
+  describe '#Viewing the Employee Show Page - US 2' do
     it 'when viewing employee show page can see employee name and department' do
       visit "/employees/#{@tashi.id}"
       expected_ticket_subjs = @tashi.tickets.pluck(:subject)
@@ -29,5 +29,28 @@ RSpec.describe "Employee Show Page" do
       oldest_ticket = @tashi.tickets.sort_oldest_2_newest.first
       expect(page).to have_content("Oldest ticket assigned: Ticket ##{oldest_ticket.id}")
     end
+  end
+
+  describe '#Viewing the Employee Show Page - US 3' do
+    it 'does not list any tickets not assigned to employee' do
+      visit "/employees/#{@tashi.id}"
+      ticket = Ticket.create!(subject: "Clean off gum under cubicle desk", age: 1)
+      expect(page).to_not have_content(ticket.subject)
+    end
+
+    it 'has a form submission for a new ticket that already exists in the database' do
+      visit "/employees/#{@tashi.id}"
+      fill_in "New ticket", with: "Install new outlet by fish tank in HR office"
+      click_button "Submit"
+    end
+
+    xit 'after submission, returns to same page with new ticket listed' do
+      visit "/employees/#{@tashi.id}"
+      fill_in "New ticket", with: "Install new outlet by fish tank in HR office"
+      click_button "Submit"
+      expect(current_path).to eq("/employees/#{@tashi.id}")
+      expect(page).to have_content("Install new outlet by fish tank in HR office")
+    end
+
   end
 end
