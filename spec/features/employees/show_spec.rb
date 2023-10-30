@@ -52,6 +52,19 @@ RSpec.describe "Employee Show Page" do
       expect(current_path).to eq("/employees/#{@tashi.id}")
       expect(page).to have_content(@ticket4.id)
     end
+  end
 
+  describe '#Viewing the Employee Show Page - US 4' do
+    it 'when viewing the show page, there is the employee name and level' do
+      visit "/employees/#{@tashi.id}"
+      expect(page).to have_content(@tashi.name)
+      expect(page).to have_content(@tashi.level)
+    end
+
+    xit 'also includes a unique list of all the employees that this employee shares tickets with' do
+      visit "/employees/#{@tashi.id}"
+      expect(page).to have_content(@roger.name)
+      expect(page).to have_content(@charlotte.name)
+    end
   end
 end

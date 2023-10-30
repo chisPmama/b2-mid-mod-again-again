@@ -1,5 +1,6 @@
 <h2><%= @employee.name %></h2>
 <p><b>Department: </b><%= @employee.department.name %></p>
+<p><b>Level: </b><%= @employee.level %></p>
 <p><b>Tickets: </b><br><% @employee.tickets.sort_oldest_2_newest.each do |t|%>
                        ID: <%= t.id %>  |  <%= t.subject%> | Age: <%= t.age%><br>
                        <% end%>
@@ -19,3 +20,5 @@
   <%= button_to "Add ##{ticket.id}", {controller: "employee_ticket", action: "create", employee_id: @employee.id, ticket_id: ticket.id}, method: :post%>
   <% end %>
 <% end %>
+
+<p><b>Employees with Shared Tickets: </b><%= @employee.find_other_employees %></p>

@@ -20,6 +20,7 @@ def test_data
 
   @tashi = @maintenance.employees.create!(name: "Tashi Smoshi", level: 3)
   @roger = @maintenance.employees.create!(name: "Roger Candy", level: 2)
+  @charlotte = @maintenance.employees.create!(name: "Charlotte Love", level: 2)
   @morgan = @it.employees.create!(name: "Morgan Moon", level: 3)
 
   @ticket1 = Ticket.create!(subject: "Table adjustment for Cindy's cubicle", age: 10)
@@ -33,7 +34,7 @@ def test_data
   EmployeeTicket.create!(employee: @tashi, ticket: @ticket3)
   EmployeeTicket.create!(employee: @roger, ticket: @ticket1)
   EmployeeTicket.create!(employee: @roger, ticket: @ticket2)
-
+  EmployeeTicket.create!(employee: @charlotte, ticket: @ticket2)
 
 
 end
