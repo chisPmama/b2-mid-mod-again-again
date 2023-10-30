@@ -15,11 +15,13 @@ RSpec.describe "Employee Show Page" do
       expected_ticket_subjs.each do |subj|
         expect(page).to have_content(subj)
       end
-      
+
     end
 
-    xit 'returns the tickets in order from oldest to newest' do
-
+    it 'returns the tickets in order from oldest to newest' do
+      visit "/employees/#{@tashi.id}"
+      expect(@ticket2.subject).to appear_before(@ticket1.subject)
+      expect(@ticket1.subject).to appear_before(@ticket3.subject)
     end
 
     xit 'lists the oldest ticket for the user separately' do
