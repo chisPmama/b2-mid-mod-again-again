@@ -13,6 +13,15 @@
 # it.
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+def test_data
+  @maintenance = Department.create!(name: "Maintenance", floor: "Upper")
+  @tashi = @maintenance.employees.create!(name: "Tashi Smoshi", level: 3)
+  @roger = @maintenance.employees.create!(name: "Roger Candy", level: 2)
+  @it = Department.create!(name: "IT", floor: "Lower")
+  @morgan = @it.employees.create!(name: "Morgan Moon", level: 3)
+end
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
