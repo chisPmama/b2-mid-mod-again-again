@@ -17,4 +17,6 @@ RSpec.describe Employee, type: :model do
     expect(tickets.sort_oldest_2_newest).to eq(ticket_order)
   end
 
+  
+
 end

@@ -24,8 +24,10 @@ RSpec.describe "Employee Show Page" do
       expect(@ticket1.subject).to appear_before(@ticket3.subject)
     end
 
-    xit 'lists the oldest ticket for the user separately' do
-
+    it 'lists the oldest ticket for the user separately' do
+      visit "/employees/#{@tashi.id}"
+      oldest_ticket = @tashi.tickets.sort_oldest_2_newest.first
+      expect(page).to have_content("Oldest ticket assigned: Ticket ##{oldest_ticket.id}")
     end
   end
 end
