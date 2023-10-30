@@ -35,21 +35,22 @@ RSpec.describe "Employee Show Page" do
     it 'does not list any tickets not assigned to employee' do
       visit "/employees/#{@tashi.id}"
       ticket = Ticket.create!(subject: "Clean off gum under cubicle desk", age: 1)
-      expect(page).to_not have_content(ticket.subject)
+      expect(page).to_not have_content(@ticket4.subject)
     end
 
     it 'has a form submission for a new ticket that already exists in the database' do
       visit "/employees/#{@tashi.id}"
-      fill_in "New ticket", with: "Install new outlet by fish tank in HR office"
+      fill_in "Add Existing Ticket", with: "Install new outlet by fish tank in HR office"
       click_button "Submit"
     end
 
-    xit 'after submission, returns to same page with new ticket listed' do
+    it 'after submission, returns to same page with new ticket listed' do
       visit "/employees/#{@tashi.id}"
-      fill_in "New ticket", with: "Install new outlet by fish tank in HR office"
+      fill_in "Add Existing Ticket", with: "#{@ticket4.id}"
       click_button "Submit"
+      click_button "Add ##{@ticket4.id}"
       expect(current_path).to eq("/employees/#{@tashi.id}")
-      expect(page).to have_content("Install new outlet by fish tank in HR office")
+      expect(page).to have_content(@ticket4.id)
     end
 
   end

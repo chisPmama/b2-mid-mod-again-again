@@ -25,6 +25,8 @@ def test_data
   @ticket1 = Ticket.create!(subject: "Table adjustment for Cindy's cubicle", age: 10)
   @ticket2 = Ticket.create!(subject: "Projector not working in Meeting Room 1", age: 12)
   @ticket3 = Ticket.create!(subject: "Request for new vending machine in breakroom", age: 5)
+  @ticket4 = Ticket.create!(subject: "Clean off gum under cubicle desk", age: 1)
+  @ticket5 = Ticket.create!(subject: "Install new outlet by fish tank in HR office", age: 9)
 
   EmployeeTicket.create!(employee: @tashi, ticket: @ticket1)
   EmployeeTicket.create!(employee: @tashi, ticket: @ticket2)

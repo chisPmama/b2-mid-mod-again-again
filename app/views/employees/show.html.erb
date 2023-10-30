@@ -4,3 +4,18 @@
                        ID: <%= t.id %>  |  <%= t.subject%> | Age: <%= t.age%><br>
                        <% end%>
 <p><b>Oldest ticket assigned:</b> Ticket #<%= @employee.oldest_ticket.id%></p>
+
+<h3>Add an Existing Ticket to Employee by ID</h3>
+  <%= form_with url: "/employees/#{@employee.id}", method: :get, data: { turbo: false } do |form| %>
+    <%= form.hidden_field :search, value: "ticket" %>
+    <%= form.label :ticket_id, "Add Existing Ticket" %>
+    <%= form.text_field :ticket_id %>
+    <%= form.submit "Submit" %>
+  <% end %>
+
+  <% if !@search_tickets.nil? && @search_tickets.any? %>
+  <% @search_tickets.each do |ticket| %>
+  <p><b>ID: <%= ticket.id %>  |  <%= ticket.subject%> | Age: <%= ticket.age%><br>
+  <%= button_to "Add ##{ticket.id}", {controller: "employee_ticket", action: "create", employee_id: @employee.id, ticket_id: ticket.id}, method: :post%>
+  <% end %>
+<% end %>
